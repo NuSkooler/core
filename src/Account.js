@@ -86,7 +86,9 @@ class Account {
    * @param {function} callback after-save callback
    */
   save(callback) {
-    Data.save('account', this.username, this.serialize(), callback);
+    this.__manager.loader.update(this.username, this.serialize())
+      .then(() => callback());
+    //Data.save('account', this.username, this.serialize(), callback);
   }
 
   /**
